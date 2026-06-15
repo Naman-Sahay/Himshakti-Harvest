@@ -14,6 +14,14 @@ export default function Contact() {
         <p>
           Reach out to us for orders, inquiries and partnerships.
         </p>
+
+        <p className="mt-4">
+          Email: info@himshaktiharvest.com
+        </p>
+
+        <p>
+          Phone: +91 98765 43210
+        </p>
       </main>
 
       <Footer />
