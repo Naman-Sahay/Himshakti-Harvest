@@ -15,6 +15,10 @@ export default function About() {
           HimShakti Harvest brings authentic Himalayan food products
           directly from local farmers and producers to customers.
         </p>
+
+        <p className="mt-4">
+          Our mission is to support local Himalayan farmers and promote sustainable food production.
+        </p>
       </main>
 
       <Footer />
