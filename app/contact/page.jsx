@@ -20,7 +20,7 @@ export default function Contact() {
         </p>
 
         <p>
-          Phone: +91 98765 43210
+          Phone: +91 93346 09452
         </p>
       </main>
 
