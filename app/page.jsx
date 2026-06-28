@@ -1,9 +1,32 @@
+"use client";
+
+import { useEffect, useState } from "react";
+
 import Navbar from "../components/Navbar";
 import Hero from "../components/Hero";
 import ProductCard from "../components/ProductCard";
 import Footer from "../components/Footer";
+import Loader from "../components/ui/Loader";
+import Toast from "../components/ui/Toast";
 
 export default function Home() {
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    fetch("http://localhost:5000/api/products")
+      .then((res) => res.json())
+      .then((data) => {
+        setProducts(data);
+        setLoading(false);
+      })
+      .catch(() => {
+        setError("Failed to load products.");
+        setLoading(false);
+      });
+  }, []);
+
   return (
     <>
       <Navbar />
@@ -14,24 +37,19 @@ export default function Home() {
           Our Products
         </h2>
 
+        {loading && <Loader />}
+
+        {error && <Toast message={error} />}
+
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <ProductCard
-            title="Apple Jam"
-            description="Made from fresh Himalayan apples."
-            price="180"
-          />
-
-          <ProductCard
-            title="Apricot Jam"
-            description="Sweet and natural apricot spread."
-            price="220"
-          />
-
-          <ProductCard
-            title="Herbal Tea"
-            description="Refreshing herbal blend from the hills."
-            price="150"
-          />
+          {products.map((product) => (
+            <ProductCard
+              key={product.id}
+              title={product.name}
+              description={product.description}
+              price={product.price}
+            />
+          ))}
         </div>
       </section>
 
